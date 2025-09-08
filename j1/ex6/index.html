@@ -52,20 +52,19 @@
     <p id="result"></p>
 
     <script>
-        // Self-invoking function wrapper pour l'exercice
+       
         function fortuneTeller() {
             const children = document.getElementById("children").value;
             const partner = document.getElementById("partner").value;
             const location = document.getElementById("location").value;
             const job = document.getElementById("job").value;
 
-            // Vérification simple
             if(!children || !partner || !location || !job){
                 document.getElementById("result").textContent = "Veuillez remplir tous les champs.";
                 return;
             }
 
-            // Self-invoking function
+          
             (function(numChildren, partnerName, geoLocation, jobTitle){
                 const message = `You will be a ${jobTitle} in ${geoLocation}, and married to ${partnerName} with ${numChildren} kids.`;
                 document.getElementById("result").textContent = message;
