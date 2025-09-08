@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 4 - Find the sum</title>
+</head>
+<body>
+
+    <h1>Exercice 4 : Find the sum</h1>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    input[type="number"] {
+        padding: 10px;
+        margin: 10px 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    p#result {
+        font-size: 18px;
+        color: #333;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+
+
+    <input type="number" id="num1" placeholder="Entrez le premier nombre">
+    <input type="number" id="num2" placeholder="Entrez le deuxième nombre">
+    <button onclick="calculateSum()">Calculer la somme</button>
+
+    <p id="result"></p>
+
+    <script>
+        
+        const sum = (a, b) => a + b;
+
+        function calculateSum() {
+            
+            const number1 = parseFloat(document.getElementById("num1").value);
+            const number2 = parseFloat(document.getElementById("num2").value);
+
+           
+            if (isNaN(number1) || isNaN(number2)) {
+                document.getElementById("result").textContent = "Veuillez entrer deux nombres valides.";
+                return;
+            }
+
+            const result = sum(number1, number2);
+
+            
+            document.getElementById("result").textContent = 
+                `La somme de ${number1} et ${number2} est : ${result}`;
+
+            
+            console.log(`La somme de ${number1} et ${number2} est : ${result}`);
+        }
+    </script>
+</body>
+</html>

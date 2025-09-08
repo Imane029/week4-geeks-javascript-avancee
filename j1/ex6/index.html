@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 6 - Fortune Teller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8dc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #fb8c00;
+        }
+
+        p#result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercice 6 : Fortune Teller</h1>
+
+    <input type="number" id="children" placeholder="Nombre d'enfants">
+    <input type="text" id="partner" placeholder="Nom du partenaire">
+    <input type="text" id="location" placeholder="Lieu géographique">
+    <input type="text" id="job" placeholder="Métier">
+    <button onclick="fortuneTeller()">Voir votre futur</button>
+
+    <p id="result"></p>
+
+    <script>
+        // Self-invoking function wrapper pour l'exercice
+        function fortuneTeller() {
+            const children = document.getElementById("children").value;
+            const partner = document.getElementById("partner").value;
+            const location = document.getElementById("location").value;
+            const job = document.getElementById("job").value;
+
+            // Vérification simple
+            if(!children || !partner || !location || !job){
+                document.getElementById("result").textContent = "Veuillez remplir tous les champs.";
+                return;
+            }
+
+            // Self-invoking function
+            (function(numChildren, partnerName, geoLocation, jobTitle){
+                const message = `You will be a ${jobTitle} in ${geoLocation}, and married to ${partnerName} with ${numChildren} kids.`;
+                document.getElementById("result").textContent = message;
+                console.log(message);
+            })(children, partner, location, job);
+        }
+    </script>
+</body>
+</html>

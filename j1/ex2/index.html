@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2 - Ternary Operator</title>
+</head>
+<body>
+    <h1>Exercice 2 : Ternary Operator</h1>
+
+    <button onclick="runExercise2()">Afficher les points d'expérience</button>
+
+    <p id="result"></p>
+
+    <script>
+       
+        const winBattle = () => true;
+
+        function runExercise2() {
+            
+            const experiencePoints = winBattle() ? 10 : 1;
+
+            
+            console.log("experiencePoints:", experiencePoints);
+
+           
+            document.getElementById("result").textContent = 
+                `Les points d'expérience sont : ${experiencePoints}`;
+        }
+    </script>
+</body>
+</html>

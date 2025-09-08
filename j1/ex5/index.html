@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 5 - Kg et Grammes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf6e3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 { color: #333; }
+        input {
+            padding: 10px;
+            margin: 10px 5px;
+            width: 200px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #2196F3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #1976D2; }
+        p { font-size: 18px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Exercice 5 : Kg et Grammes</h1>
+
+    <input type="number" id="kgInput" placeholder="Entrez le poids en kg">
+    <button onclick="convertDeclaration()">Convertir (Function Declaration)</button>
+    <button onclick="convertExpression()">Convertir (Function Expression)</button>
+    <button onclick="convertArrow()">Convertir (Arrow Function)</button>
+
+    <p id="result"></p>
+
+    <script>
+        // ---------- 1. Function Declaration ----------
+        function kgToGramsDeclaration(kg) {
+            return kg * 1000;
+        }
+
+        function convertDeclaration() {
+            const kg = parseFloat(document.getElementById("kgInput").value);
+            if(isNaN(kg)) {
+                document.getElementById("result").textContent = "Veuillez entrer un nombre valide.";
+                return;
+            }
+            const grams = kgToGramsDeclaration(kg);
+            document.getElementById("result").textContent = `${kg} kg = ${grams} grammes (Declaration)`;
+        }
+
+        // ---------- 2. Function Expression ----------
+        const kgToGramsExpression = function(kg) {
+            return kg * 1000;
+        };
+
+        function convertExpression() {
+            const kg = parseFloat(document.getElementById("kgInput").value);
+            if(isNaN(kg)) {
+                document.getElementById("result").textContent = "Veuillez entrer un nombre valide.";
+                return;
+            }
+            const grams = kgToGramsExpression(kg);
+            document.getElementById("result").textContent = `${kg} kg = ${grams} grammes (Expression)`;
+        }
+
+        // ---------- 3. Arrow Function ----------
+        const kgToGramsArrow = kg => kg * 1000;
+
+        function convertArrow() {
+            const kg = parseFloat(document.getElementById("kgInput").value);
+            if(isNaN(kg)) {
+                document.getElementById("result").textContent = "Veuillez entrer un nombre valide.";
+                return;
+            }
+            const grams = kgToGramsArrow(kg);
+            document.getElementById("result").textContent = `${kg} kg = ${grams} grammes (Arrow)`;
+        }
+
+        // ---------- Commentaire ----------
+        // Difference :
+        // Function Declaration : peut être appelée avant sa définition
+        // Function Expression : assignée à une variable, ne peut être appelée qu'après sa définition
+        // Arrow Function : syntaxe concise, idéale pour les fonctions simples
+    </script>
+</body>
+</html>

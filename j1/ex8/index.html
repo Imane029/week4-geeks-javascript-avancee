@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Juice Bar Interactif - Style Amélioré</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #fefcea, #f1da36);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #d84315;
+            text-shadow: 1px 1px 2px #fff;
+            margin-bottom: 20px;
+        }
+
+        .ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 600px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .ingredients label {
+            width: 140px;
+            margin: 5px;
+            padding: 8px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        .ingredients label:hover {
+            transform: scale(1.1);
+        }
+
+       
+        label:nth-child(1) { background-color: #f44336; } 
+        label:nth-child(2) { background-color: #ffeb3b; color: #000; } 
+        label:nth-child(3) { background-color: #ff9800; } 
+        label:nth-child(4) { background-color: #ff5722; } 
+        label:nth-child(5) { background-color: #ffc107; color: #000; } 
+        label:nth-child(6) { background-color: #4caf50; } 
+        label:nth-child(7) { background-color: #e91e63; } 
+        label:nth-child(8) { background-color: #3f51b5; } 
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: #d84315;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #aaa;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #bf360c;
+            transform: scale(1.05);
+        }
+
+        p#result {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d84315;
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.7);
+        }
+    </style>
+</head>
+<body>
+    <h1>Juice Bar Interactif 🍹</h1>
+
+    <div class="ingredients">
+        <label><input type="checkbox" value="Apple"> Apple</label>
+        <label><input type="checkbox" value="Banana"> Banana</label>
+        <label><input type="checkbox" value="Orange"> Orange</label>
+        <label><input type="checkbox" value="Mango"> Mango</label>
+        <label><input type="checkbox" value="Pineapple"> Pineapple</label>
+        <label><input type="checkbox" value="Kiwi"> Kiwi</label>
+        <label><input type="checkbox" value="Strawberry"> Strawberry</label>
+        <label><input type="checkbox" value="Blueberry"> Blueberry</label>
+    </div>
+
+    <button onclick="makeJuice('Large')">Commander un jus</button>
+
+    <p id="result"></p>
+
+    <script>
+        function makeJuice(size) {
+            const selectedIngredients = [];
+            const checkboxes = document.querySelectorAll('.ingredients input[type="checkbox"]');
+
+            checkboxes.forEach(cb => {
+                if(cb.checked) selectedIngredients.push(cb.value);
+            });
+
+            if(selectedIngredients.length === 0) {
+                document.getElementById("result").textContent = "Veuillez sélectionner au moins un ingrédient !";
+                return;
+            }
+
+            
+            (function(size, ingredients){
+                const message = `The client wants a ${size} juice containing ${ingredients.join(", ")}.`;
+                document.getElementById("result").textContent = message;
+                console.log(message);
+            })(size, selectedIngredients);
+        }
+    </script>
+</body>
+</html>

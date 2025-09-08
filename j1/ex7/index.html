@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 7 - Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2196F3;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>Mon Site</h2>
+        <div class="user-info" id="userInfo"></div>
+    </div>
+
+    <script>
+        // Self-invoking function pour afficher le nom "Emmy" et une photo de fille
+        (function(name, photoUrl){
+            const userDiv = document.getElementById('userInfo');
+
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = name;
+
+            const img = document.createElement('img');
+            img.src = photoUrl;
+            img.alt = name;
+
+            userDiv.appendChild(nameSpan);
+            userDiv.appendChild(img);
+        })(
+            "Emmy", 
+            "https://randomuser.me/api/portraits/women/65.jpg" 
+        );
+    </script>
+</body>
+</html>
