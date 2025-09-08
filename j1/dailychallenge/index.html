@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Objects & References</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+    h2 {
+      color: #333;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      width: 400px;
+      min-height: 100px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h2>Objects & References Challenge</h2>
+
+  <button id="displayFruitsBtn">Afficher les fruits</button>
+  <button id="cloneGroceriesBtn">Tester cloneGroceries</button>
+
+  <div id="output"></div>
+
+  <script>
+    
+    let client = "John";
+
+    const groceries = {
+      fruits : ["pear", "apple", "banana"],
+      vegetables: ["tomatoes", "cucumber", "salad"],
+      totalPrice : "20$",
+      other : {
+        paid : true,
+        meansOfPayment : ["cash", "creditCard"]
+      }
+    };
+
+    const outputDiv = document.getElementById('output');
+
+    
+    const displayGroceries = () => {
+      outputDiv.textContent = "Fruits :\n";
+      groceries.fruits.forEach(fruit => {
+        outputDiv.textContent += fruit + "\n";
+      });
+    };
+
+    
+    const cloneGroceries = () => {
+      let user = client; 
+      client = "Betty";
+
+      let shopping = groceries; 
+      shopping.totalPrice = "35$";
+      shopping.other.paid = false;
+
+      outputDiv.textContent = 
+        `Client : ${client}\n` +
+        `User (copie) : ${user}\n\n` +
+        `Shopping totalPrice : ${shopping.totalPrice}\n` +
+        `Groceries totalPrice : ${groceries.totalPrice}\n\n` +
+        `Shopping paid : ${shopping.other.paid}\n` +
+        `Groceries paid : ${groceries.other.paid}`;
+    };
+
+    
+    document.getElementById('displayFruitsBtn').addEventListener('click', displayGroceries);
+    document.getElementById('cloneGroceriesBtn').addEventListener('click', cloneGroceries);
+  </script>
+</body>
+</html>
