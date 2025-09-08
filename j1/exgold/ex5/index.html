@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 5 - Composing</title>
+    <style>
+        body {
+             font-family: 'Georgia', serif;
+              background-color: #f3e5f5; 
+              padding: 20px; }
+        h1 { 
+            color: #8e24aa; 
+        }
+        input, button { 
+            padding: 8px; 
+            margin-top: 10px; 
+            font-size: 14px; 
+        }
+        button {
+             border-radius: 5px;
+              background-color: #8e24aa;
+               color: white; 
+               border: none; 
+               cursor: pointer; 
+            }
+        button:hover {
+             background-color: #6a1b9a;
+             }
+        p#result {
+             margin-top: 10px; 
+             font-weight: bold;
+              font-size: 18px; 
+              color: #4a148c;
+             }
+    </style>
+</head>
+<body>
+    <h1>Exercice 5 : Composing</h1>
+    <label>Entrez un nombre : <input type="number" id="inputNum" /></label>
+    <button onclick="run()">Exécuter</button>
+    <p id="result"></p>
+
+    <script>
+        const compose = (f,g) => a => f(g(a));
+        const add1 = num => num + 1;
+        const add5 = num => num + 5;
+
+        function run() {
+            const num = parseInt(document.getElementById("inputNum").value);
+            const result = compose(add1, add5)(num);
+            document.getElementById("result").textContent = `Résultat: ${result}`;
+        }
+    </script>
+</body>
+</html>

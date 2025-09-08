@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2 - Closure</title>
+    <style>
+        body { font-family: 'Verdana', sans-serif; background-color: #fff3e0; padding: 20px; }
+        h1 { color: #f57c00; }
+        input, button { padding: 8px; margin-top: 10px; font-size: 14px; }
+        button { border-radius: 5px; background-color: #f57c00; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #ef6c00; }
+        p#result { margin-top: 10px; font-weight: bold; font-size: 18px; color: #e65100; }
+    </style>
+</head>
+<body>
+    <h1>Exercice 2 : Closure</h1>
+    <label>Entrez un nombre : <input type="number" id="inputX" /></label>
+    <button onclick="run()">Exécuter</button>
+    <p id="result"></p>
+
+    <script>
+        const addTo = x => y => x + y;
+
+        function run() {
+            const x = parseInt(document.getElementById("inputX").value);
+            const addToX = addTo(x);
+            const result = addToX(3); 
+            document.getElementById("result").textContent = `Résultat: ${result}`;
+        }
+    </script>
+</body>
+</html>

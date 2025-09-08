@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 4 - Currying intermédiaire</title>
+    <style>
+        body {
+             font-family: 'Courier New', monospace;
+              background-color: #fce4ec; padding: 20px;
+             }
+        h1 {
+             color: #d81b60; 
+            }
+        input, button {
+             padding: 8px;
+             margin-top: 10px;
+             font-size: 14px; 
+            }
+        button {
+             border-radius: 5px;
+             background-color: #d81b60; 
+             color: white; 
+             border: none; 
+             cursor: pointer; 
+            }
+        button:hover {
+             background-color: #ad1457;
+             }
+        p#result {
+             margin-top: 10px; 
+             font-weight: bold;
+             font-size: 18px;
+            color: #880e4f; 
+            }
+    </style>
+</head>
+<body>
+    <h1>Exercice 4 : Currying intermédiaire</h1>
+    <label>Entrez un nombre : <input type="number" id="inputNum" /></label>
+    <button onclick="run()">Exécuter</button>
+    <p id="result"></p>
+
+    <script>
+        const curriedSum = a => b => a + b;
+        const add5 = curriedSum(5);
+
+        function run() {
+            const num = parseInt(document.getElementById("inputNum").value);
+            const result = add5(num);
+            document.getElementById("result").textContent = `Résultat: ${result}`;
+        }
+    </script>
+</body>
+</html>

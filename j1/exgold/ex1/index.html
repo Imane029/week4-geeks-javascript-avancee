@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 1 - Nested Functions</title>
+</head>
+<body>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        padding: 20px;
+    }
+    h1 {
+        color: #1e88e5;
+    }
+    button {
+        padding: 8px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1e88e5;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    button:hover {
+        background-color: #1565c0;
+    }
+    p#result {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        color: #0d47a1;
+    }
+</style>
+
+    <h1>Exercice 1 : Nested Functions</h1>
+    <button onclick="run()">Exécuter</button>
+    <p id="result"></p>
+
+    <script>
+        const landscape = () => {
+            let result = "";
+            const flat = x => { for(let i=0;i<x;i++) result += "_"; };
+            const mountain = x => { result += "/"; for(let i=0;i<x;i++) result += "'"; result += "\\"; };
+            flat(4); mountain(4); flat(4);
+            return result;
+        }
+
+        function run() {
+            document.getElementById("result").textContent = landscape();
+        }
+    </script>
+</body>
+</html>

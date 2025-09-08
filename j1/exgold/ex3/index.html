@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 3 - Currying</title>
+    <style>
+        body {
+            
+           font-family: 'Tahoma', sans-serif; 
+           background-color: #e8f5e9; 
+        padding: 20px; 
+    }
+        h1 {
+             color: #43a047;
+         }
+        input, button {
+             padding: 8px;
+             margin-top: 10px; 
+             font-size: 14px; 
+            }
+        button {
+             border-radius: 5px;
+             background-color: #43a047;
+             color: white; border: none; 
+             cursor: pointer; 
+            }
+        button:hover {
+             background-color: #2e7d32; 
+            }
+        p#result {
+             margin-top: 10px; 
+             font-weight: bold; 
+             font-size: 18px; 
+             color: #1b5e20; 
+            }
+    </style>
+</head>
+<body>
+    <h1>Exercice 3 : Currying</h1>
+    <label>Entrez a : <input type="number" id="inputA" /></label>
+    <label>Entrez b : <input type="number" id="inputB" /></label>
+    <button onclick="run()">Exécuter</button>
+    <p id="result"></p>
+
+    <script>
+        const curriedSum = a => b => a + b;
+
+        function run() {
+            const a = parseInt(document.getElementById("inputA").value);
+            const b = parseInt(document.getElementById("inputB").value);
+            const result = curriedSum(a)(b);
+            document.getElementById("result").textContent = `Résultat: ${result}`;
+        }
+    </script>
+</body>
+</html>
