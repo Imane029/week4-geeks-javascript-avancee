@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 - Employees Interactive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            margin: 10px 10px 20px 0;
+            padding: 10px 20px;
+            border: none;
+            background: #2980b9;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h2>Liste des utilisateurs</h2>
+    <button id="show-all">Afficher tous les noms</button>
+    <button id="show-residents">Afficher Full Stack Residents</button>
+    <button id="show-lastnames">Afficher les last names des Full Stack Residents </button>
+
+    <ul id="display-list"></ul>
+
+    <script>
+        const users = [
+            { firstName: 'Bradley', lastName: 'Bouley', role: 'Full Stack Resident' },
+            { firstName: 'Chloe', lastName: 'Alnaji', role: 'Full Stack Resident' },
+            { firstName: 'Jonathan', lastName: 'Baughn', role: 'Enterprise Instructor' },
+            { firstName: 'Michael', lastName: 'Herman', role: 'Lead Instructor' },
+            { firstName: 'Robert', lastName: 'Hajek', role: 'Full Stack Resident' },
+            { firstName: 'Wes', lastName: 'Reid', role: 'Instructor'},
+            { firstName: 'Zach', lastName: 'Klabunde', role: 'Instructor'}
+        ];
+
+        const displayList = document.getElementById('display-list');
+
+        function displayItems(items) {
+            displayList.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                displayList.appendChild(li);
+            });
+        }
+
+        
+        document.getElementById('show-all').addEventListener('click', () => {
+            const allNames = users.map(user => user.firstName);
+            displayItems(allNames);
+        });
+
+       
+        document.getElementById('show-residents').addEventListener('click', () => {
+            const residents = users
+                .filter(user => user.role === 'Full Stack Resident')
+                .map(user => `${user.firstName} ${user.lastName}`);
+            displayItems(residents);
+        });
+
+        
+        document.getElementById('show-lastnames').addEventListener('click', () => {
+            const lastNames = users
+                .filter(user => user.role === 'Full Stack Resident')
+                .map(user => user.lastName);
+            displayItems(lastNames);
+        });
+    </script>
+</body>
+</html>

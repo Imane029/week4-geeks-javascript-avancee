@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars - Reduce Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .word {
+            display: inline-block;
+            background: #ecf0f1;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #2980b9;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3498db;
+        }
+        input {
+            padding: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tableau séparé :</h1>
+    <div id="words-container"></div>
+
+    <h2>Ajouter un mot :</h2>
+    <input type="text" id="new-word" placeholder="Tape un mot">
+    <button id="add-btn">Ajouter au tableau</button>
+
+    <button id="combine-btn">Regrouper les mots</button>
+
+    <div id="result"></div>
+
+    <script>
+        let epic = ['a', 'long', 'time', 'ago', 'in a', 'galaxy', 'far far', 'away'];
+
+        const container = document.getElementById('words-container');
+        const resultDiv = document.getElementById('result');
+
+        
+        function displayWords() {
+            container.innerHTML = ''; 
+            epic.forEach(word => {
+                const span = document.createElement('span');
+                span.textContent = word;
+                span.classList.add('word');
+                container.appendChild(span);
+            });
+        }
+
+        displayWords();
+
+        // Ajouter un mot au tableau
+        document.getElementById('add-btn').addEventListener('click', () => {
+            const newWord = document.getElementById('new-word').value.trim();
+            if(newWord) {
+                epic.push(newWord);
+                displayWords();
+                document.getElementById('new-word').value = '';
+            }
+        });
+
+        // Regrouper les mots
+        document.getElementById('combine-btn').addEventListener('click', () => {
+            const sentence = epic.reduce((acc, curr) => acc + ' ' + curr);
+            resultDiv.textContent = sentence;
+        });
+    </script>
+</body>
+</html>

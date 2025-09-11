@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Passed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #2980b9;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tous les étudiants :</h1>
+    <ul id="all-students"></ul>
+
+    <button id="show-passed">Afficher seulement les étudiants ayant réussi</button>
+
+    <h2>Étudiants ayant réussi :</h2>
+    <ul id="passed-students"></ul>
+
+    <script>
+        const students = [
+            {name: "Ray", course: "Computer Science", isPassed: true}, 
+            {name: "Liam", course: "Computer Science", isPassed: false}, 
+            {name: "Jenner", course: "Information Technology", isPassed: true}, 
+            {name: "Marco", course: "Robotics", isPassed: true}, 
+            {name: "Kimberly", course: "Artificial Intelligence", isPassed: false}, 
+            {name: "Jamie", course: "Big Data", isPassed: false}
+        ];
+
+        const allUl = document.getElementById('all-students');
+        const passedUl = document.getElementById('passed-students');
+        const button = document.getElementById('show-passed');
+
+        
+        students.forEach(student => {
+            const li = document.createElement('li');
+            li.textContent = student.name;
+            allUl.appendChild(li);
+        });
+
+        
+        button.addEventListener('click', () => {
+            passedUl.innerHTML = ''; 
+            const passedStudents = students.filter(student => student.isPassed);
+            passedStudents.forEach(student => {
+                const li = document.createElement('li');
+                li.textContent = `Good job ${student.name}, you passed the course in ${student.course}!`;
+                passedUl.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

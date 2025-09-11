@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 3 - Analyzing</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #4a5568;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+    }
+    .code-section {
+      margin-bottom: 30px;
+      background: #f7fafc;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 5px solid #667eea;
+    }
+    .code-section h2 {
+      color: #667eea;
+      margin-top: 0;
+      font-size: 1.3em;
+    }
+    .code-preview {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 15px 0;
+      overflow-x: auto;
+      border-left: 4px solid #667eea;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      margin: 5px 5px 10px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .output {
+      background: #1a202c;
+      color: #68d391;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      min-height: 50px;
+      border: 2px solid #2d3748;
+    }
+    .explanation {
+      background: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .clear-btn {
+      background: #e53e3e;
+    }
+    .clear-btn:hover {
+      background: #c53030;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Exercice 3 : Analyzing</h1>
+
+    <!-- Code 1 -->
+    <div class="code-section">
+      <h2>Code 1 - Spread Operator avec tableaux</h2>
+      <div class="code-preview">
+const fruits = ["apple", "orange"];
+const vegetables = ["carrot", "potato"];
+const result = ['bread', ...vegetables, 'chicken', ...fruits];
+console.log(result);
+      </div>
+      <button onclick="runCode1()">▶ Exécuter Code 1</button>
+      <div class="explanation">
+        🎯 <strong>Explication :</strong> Le spread operator <code>...</code> insère les éléments des tableaux <em>vegetables</em> et <em>fruits</em> dans le tableau <em>result</em>.
+      </div>
+    </div>
+
+    <!-- Code 2 -->
+    <div class="code-section">
+      <h2>Code 2 - Spread Operator avec string</h2>
+      <div class="code-preview">
+const country = "USA";
+console.log([...country]);
+      </div>
+      <button onclick="runCode2()">▶ Exécuter Code 2</button>
+      <div class="explanation">
+        🎯 <strong>Explication :</strong> La chaîne <code>"USA"</code> est transformée en tableau de caractères : <code>["U","S","A"]</code>.
+      </div>
+    </div>
+
+    <!-- Bonus -->
+    <div class="code-section">
+      <h2>Bonus - Tableaux avec éléments vides</h2>
+      <div class="code-preview">
+let newArray = [...[,,]];
+console.log(newArray);
+      </div>
+      <button onclick="runBonus()">▶ Exécuter Bonus</button>
+      <div class="explanation">
+        🎯 <strong>Explication :</strong> <code>[,,]</code> est un tableau avec 2 cases vides. Le spread operator transforme cela en <code>[undefined, undefined]</code>.
+      </div>
+    </div>
+
+    <!-- Zone Résultats -->
+    <button class="clear-btn" onclick="clearOutput()">🗑 Effacer les résultats</button>
+    <div id="output" class="output">👉 Cliquez sur un bouton pour exécuter le code...</div>
+  </div>
+
+  <script>
+    function displayResult(title, result) {
+      const output = document.getElementById('output');
+      const timestamp = new Date().toLocaleTimeString();
+      const resultStr = typeof result === 'object' ? JSON.stringify(result, null, 2) : result;
+      output.textContent += `[${timestamp}] ${title}:\n${resultStr}\n\n`;
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').textContent = 'Résultats effacés...';
+    }
+
+    function runCode1() {
+      const fruits = ["apple", "orange"];
+      const vegetables = ["carrot", "potato"];
+      const result = ['bread', ...vegetables, 'chicken', ...fruits];
+      displayResult('Code 1 - Résultat', result);
+    }
+
+    function runCode2() {
+      const country = "USA";
+      const result = [...country];
+      displayResult('Code 2 - Résultat', result);
+    }
+
+    function runBonus() {
+      let newArray = [...[,,]];
+      displayResult('Bonus - Résultat', newArray);
+    }
+  </script>
+</body>
+</html>

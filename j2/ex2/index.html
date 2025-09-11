@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 2 - Colors #2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #2d3436;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 250px;
+    }
+
+    li {
+      background: #ffffff;
+      margin: 6px 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    li:hover {
+      background: #dfe6e9;
+      transform: translateX(5px);
+    }
+
+    .check-section {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #00b894;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #55efc4;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Liste des Couleurs avec Ordinal</h1>
+  <ul id="colorList"></ul>
+
+  <div class="check-section">
+    <input type="text" id="colorInput" placeholder="Entrez une couleur...">
+    <button onclick="checkColor()">Vérifier</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const colors = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+    const ordinal = ["th","st","nd","rd"];
+
+    const ul = document.getElementById("colorList");
+    colors.forEach((color, index) => {
+      let num = index + 1;
+      let suffix = (num === 1) ? ordinal[1] :
+                   (num === 2) ? ordinal[2] :
+                   (num === 3) ? ordinal[3] : ordinal[0];
+
+      const li = document.createElement("li");
+      li.textContent = `${num}${suffix} choice is ${color}`;
+      ul.appendChild(li);
+    });
+
+    
+    function checkColor() {
+      const input = document.getElementById("colorInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (colors.includes(input)) {
+        resultDiv.textContent = `Yeah 🎉 "${input}" existe dans la liste !`;
+        resultDiv.style.color = "green";
+      } else {
+        resultDiv.textContent = `No... 😢 "${input}" n'existe pas dans la liste.`;
+        resultDiv.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
