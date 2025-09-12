@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Game Info Exercise </title>
+<style>
+  body { font-family: Arial; padding: 20px; }
+  input, textarea { margin: 5px 0; padding: 5px; width: 250px; display: block; }
+  button { margin: 5px 5px 5px 0; padding: 8px 15px; cursor: pointer; border: none; border-radius: 5px; background: #2980b9; color: white; }
+  button:hover { background: #3498db; }
+  #result { margin-top: 15px; padding: 10px; background: #ecf0f1; border-radius: 5px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<h2>Game Info Exercise</h2>
+
+<h3>Ajouter un joueur :</h3>
+<input type="text" id="username" placeholder="Nom d'utilisateur">
+<input type="text" id="team" placeholder="Équipe">
+<input type="number" id="score" placeholder="Score">
+<input type="text" id="items" placeholder="Items séparés par une virgule">
+<button onclick="addPlayer()">Ajouter joueur</button>
+
+<h3>Actions :</h3>
+<button onclick="addExclamation()">Usernames avec !</button>
+<button onclick="filterWinners()">Gagnants (score > 5)</button>
+<button onclick="totalScore()">Score total</button>
+
+<div id="result"></div>
+
+<script>
+let gameInfo = [];
+
+function addPlayer() {
+  const username = document.getElementById('username').value.trim();
+  const team = document.getElementById('team').value.trim();
+  const score = parseInt(document.getElementById('score').value);
+  const items = document.getElementById('items').value.split(',').map(i => i.trim()).filter(i => i);
+
+  if(!username || !team || isNaN(score)) {
+    alert("Veuillez remplir tous les champs correctement !");
+    return;
+  }
+
+  gameInfo.push({ username, team, score, items });
+
+  document.getElementById('result').textContent = `✅ Joueur ajouté : ${username}`;
+  document.getElementById('username').value = "";
+  document.getElementById('team').value = "";
+  document.getElementById('score').value = "";
+  document.getElementById('items').value = "";
+}
+
+function addExclamation() {
+  const usernames = [];
+  gameInfo.forEach(user => usernames.push(user.username + "!"));
+  document.getElementById('result').textContent = "Usernames avec ! :\n" + usernames.join(", ");
+}
+
+function filterWinners() {
+  const winners = [];
+  gameInfo.forEach(user => {
+    if(user.score > 5) winners.push(user.username);
+  });
+  document.getElementById('result').textContent = "Gagnants (score > 5) :\n" + winners.join(", ");
+}
+
+function totalScore() {
+  let total = 0;
+  gameInfo.forEach(user => total += user.score);
+  document.getElementById('result').textContent = "Score total : " + total;
+}
+</script>
+
+</body>
+</html>
