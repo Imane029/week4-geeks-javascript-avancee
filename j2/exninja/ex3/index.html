@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 3 - Employees #3</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input {
+      margin: 5px 0;
+      padding: 8px;
+      width: 250px;
+      display: block;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 10px 5px 0 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #8e44ad;
+      color: white;
+    }
+    button:hover {
+      background: #9b59b6;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #ecf0f1;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Exercice 3 : Employees #3</h2>
+
+  <p>Ajoutez un employé :</p>
+  <input type="text" id="firstName" placeholder="Prénom">
+  <input type="text" id="lastName" placeholder="Nom">
+  <input type="text" id="role" placeholder="Rôle (ex: Full Stack Resident)">
+  <button onclick="addUser()">Ajouter</button>
+  <button onclick="transform()">Transformer en objet</button>
+
+  <div id="result"></div>
+
+  <script>
+    let users = [];
+
+    function addUser() {
+      const first = document.getElementById('firstName').value.trim();
+      const last = document.getElementById('lastName').value.trim();
+      const role = document.getElementById('role').value.trim();
+
+      if (first && last && role) {
+        users.push({ firstName: first, lastName: last, role: role });
+        document.getElementById('result').textContent =
+          "Employé ajouté ✅ : " + first + " " + last + " (" + role + ")";
+        
+       
+        document.getElementById('firstName').value = "";
+        document.getElementById('lastName').value = "";
+        document.getElementById('role').value = "";
+      } else {
+        alert("Veuillez remplir tous les champs !");
+      }
+    }
+
+    function transform() {
+      let obj = {};
+      users.forEach(u => {
+        obj[`${u.firstName} ${u.lastName}`] = u.role;
+      });
+
+      document.getElementById('result').textContent =
+        "Objet final :\n" + JSON.stringify(obj, null, 2);
+    }
+  </script>
+
+</body>
+</html>

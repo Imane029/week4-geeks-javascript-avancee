@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 2 - Nettoyage Email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 300px;
+    }
+    button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2ecc71;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: darkblue;
+      white-space: pre-wrap; 
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Exercice 2 : Nettoyer une adresse email</h2>
+
+  <p>Entrez une adresse email avec des espaces :</p>
+  <input type="text" id="emailInput" placeholder="   exemple@gmail.com   ">
+  <button onclick="cleanEmail()">Nettoyer</button>
+
+  <div id="result"></div>
+
+  <script>
+    function cleanEmail() {
+      const email = document.getElementById('emailInput').value;
+
+      
+      const cleaned = email.trim();
+
+      document.getElementById('result').textContent =
+        `Avant nettoyage : "${email}"\nAprès nettoyage : "${cleaned}"`;
+    }
+  </script>
+
+</body>
+</html>

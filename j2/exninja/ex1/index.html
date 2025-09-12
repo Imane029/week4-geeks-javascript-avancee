@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 1 - Âge des Chiens</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, select, button {
+      margin: 5px;
+      padding: 5px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: darkblue;
+    }
+    ul {
+      margin-top: 10px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ajouter un animal</h2>
+  <form id="animalForm">
+    <input type="text" id="name" placeholder="Nom de l'animal" required>
+    <input type="number" id="age" placeholder="Âge (en années)" required>
+    <select id="type">
+      <option value="dog">Chien</option>
+      <option value="cat">Chat</option>
+      <option value="rabbit">Lapin</option>
+      <option value="other">Autre</option>
+    </select>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <button onclick="calculateDogs()">Calculer les âges des chiens</button>
+
+  <div id="result"></div>
+  <ul id="dogList"></ul>
+
+  <script>
+    const animals = [];
+
+    document.getElementById('animalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const age = parseInt(document.getElementById('age').value);
+      const type = document.getElementById('type').value;
+
+      animals.push({ name, age, type });
+
+      alert(`✅ ${name} ajouté avec succès !`);
+      this.reset();
+    });
+
+    function calculateDogs() {
+      const dogList = document.getElementById('dogList');
+      dogList.innerHTML = ""; 
+
+      let sum = 0;
+
+      animals.forEach(pet => {
+        if (pet.type === 'dog') {
+          const humanAge = pet.age * 7;
+          sum += humanAge;
+
+         
+          const li = document.createElement('li');
+          li.textContent = `${pet.name} → ${humanAge} ans humains`;
+          dogList.appendChild(li);
+        }
+      });
+
+      document.getElementById('result').textContent =
+        `Somme totale des âges des chiens en années humaines : ${sum}`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercice 4 - Array to Object</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input {
+      margin: 5px 0;
+      padding: 8px;
+      width: 250px;
+      display: block;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 10px 5px 0 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #27ae60;
+      color: white;
+    }
+    button:hover {
+      background: #2ecc71;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      background: #ecf0f1;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Exercice 4 : Array to Object</h2>
+
+  <p>Entrez des lettres séparées par des virgules (ex : x,y,z,z) :</p>
+  <input type="text" id="letters" placeholder="Exemple : x,y,z,z">
+  <button onclick="countFor()">Compter (avec for loop)</button>
+  <button onclick="countReduce()">Compter (avec reduce)</button>
+
+  <div id="result"></div>
+
+  <script>
+    function countFor() {
+      const input = document.getElementById('letters').value.trim();
+      if (!input) return alert("Veuillez entrer des lettres !");
+      
+      const arr = input.split(",");
+      let obj = {};
+
+      for (let letter of arr) {
+        letter = letter.trim();
+        obj[letter] = (obj[letter] || 0) + 1;
+      }
+
+      document.getElementById('result').textContent = 
+        "Résultat avec for loop :\n" + JSON.stringify(obj, null, 2);
+    }
+
+    function countReduce() {
+      const input = document.getElementById('letters').value.trim();
+      if (!input) return alert("Veuillez entrer des lettres !");
+      
+      const arr = input.split(",");
+      let obj = arr.reduce((acc, letter) => {
+        letter = letter.trim();
+        acc[letter] = (acc[letter] || 0) + 1;
+        return acc;
+      }, {});
+
+      document.getElementById('result').textContent = 
+        "Résultat avec reduce :\n" + JSON.stringify(obj, null, 2);
+    }
+  </script>
+
+</body>
+</html>
