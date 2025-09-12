@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercise 1 - Map with user input</title>
+<style>
+    body {
+    font-family: Arial;
+    padding: 20px;
+}
+
+input {
+    padding: 5px;
+    width: 200px;
+    display: block;       
+    margin-bottom: 10px;  
+}
+
+button {
+    padding: 5px 10px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;      
+    margin-bottom: 15px;  
+}
+
+button:hover {
+    background: #3498db;
+}
+
+.result {
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Exercise 1 : Map Method avec saisie utilisateur</h2>
+<p>Entrez des nombres séparés par des virgules :</p>
+<input type="text" id="user-input" placeholder="ex : 1,2,3">
+<button id="btn">Afficher résultat</button>
+<div class="result" id="result"></div>
+
+<script>
+document.getElementById('btn').addEventListener('click', () => {
+    const input = document.getElementById('user-input').value;
+    
+    const numbers = input.split(',').map(num => Number(num.trim()));
+
+    const result = numbers.map(num => typeof num === 'number' ? num*2 : undefined);
+
+    document.getElementById('result').textContent = JSON.stringify(result);
+});
+</script>
+
+</body>
+</html>

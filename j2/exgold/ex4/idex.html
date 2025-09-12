@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercice 4 - Employees</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input { display: block; margin: 5px 0; padding: 8px; width: 250px; }
+    button { margin: 10px 0; padding: 8px 12px; border: none; background: #2980b9; color: #fff; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #3498db; }
+    .result { margin-top: 15px; padding: 10px; background: #ecf0f1; border-radius: 5px; }
+    ul { list-style: none; padding: 0; }
+    li { background: #fff; margin: 5px 0; padding: 8px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+  <h2>Ajouter un employé</h2>
+  <input type="text" id="firstName" placeholder="Prénom">
+  <input type="text" id="lastName" placeholder="Nom">
+  <input type="number" id="age" placeholder="Âge">
+  <input type="text" id="job" placeholder="Métier">
+  <button onclick="addEmployee()">Ajouter</button>
+  <button onclick="showFullNames()">Afficher les Full Names</button>
+
+  <div class="result">
+    <h3>Liste des full names :</h3>
+    <ul id="fullNamesList"></ul>
+  </div>
+
+  <script>
+    let employees = [];
+
+    function addEmployee() {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const age = document.getElementById("age").value;
+      const job = document.getElementById("job").value;
+
+      if(firstName && lastName && age && job) {
+        employees.push({ firstName, lastName, age, job });
+        alert("Employé ajouté !");
+        document.getElementById("firstName").value = "";
+        document.getElementById("lastName").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("job").value = "";
+      } else {
+        alert("Veuillez remplir tous les champs.");
+      }
+    }
+
+    function showFullNames() {
+      const list = document.getElementById("fullNamesList");
+      list.innerHTML = "";
+
+      const fullNames = employees.map(emp => emp.firstName + " " + emp.lastName);
+
+      fullNames.forEach(name => {
+        const li = document.createElement("li");
+        li.textContent = name;
+        list.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
