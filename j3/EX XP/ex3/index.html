@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 3 Interactive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .output {
+      background-color: #ecf0f1;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      color: #34495e;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Exercise 3: User & ID Interactive</h1>
+
+  <div class="output" id="usersArray"></div>
+
+  <button id="multiplyButton">Multiplier les IDs par 2</button>
+
+  <div class="output" id="usersMultiplied"></div>
+
+  <script>
+    const users = { user1: 18273, user2: 92833, user3: 90315 };
+
+   
+    const usersArray = Object.entries(users);
+    document.getElementById('usersArray').innerText = 
+      `Users as array:\n${JSON.stringify(usersArray)}`;
+
+    
+    document.getElementById('multiplyButton').addEventListener('click', () => {
+      const updatedUsers = Object.entries(users).map(([key, value]) => [key, value * 2]);
+      document.getElementById('usersMultiplied').innerText = 
+        `Users with IDs multiplied by 2:\n${JSON.stringify(updatedUsers)}`;
+    });
+  </script>
+
+</body>
+</html>

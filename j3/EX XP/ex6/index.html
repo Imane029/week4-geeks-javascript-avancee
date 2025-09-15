@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 6: Challenges Interactifs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            background-color: #f0f4f8;
+            color: #334e68;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        h1, h2 {
+            color: #102a43;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            color: #4a5568;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            border: 1px solid #e2e8f0;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #3b82f6;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        input[type="text"] {
+            padding: 10px 12px;
+            margin: 8px 0;
+            width: 250px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Exercice 6: Challenges Interactifs</h1>
+
+        <h2>1️⃣ Comparaisons</h2>
+        <button id="compareButton">Comparer [2] === [2] et {} === {}</button>
+        <div class="output" id="compareOutput"></div>
+
+        <h2>2️⃣ Valeurs des objets</h2>
+        <button id="objectButton">Voir valeurs après modification</button>
+        <div class="output" id="objectOutput"></div>
+
+        <h2>3️⃣ Classe Animal et Mammal</h2>
+        <label>Nom de l'animal: <input type="text" id="animalName"></label><br>
+        <label>Type: <input type="text" id="animalType"></label><br>
+        <label>Couleur: <input type="text" id="animalColor"></label><br>
+        <button id="createAnimal">Créer et faire sonner</button>
+        <div class="output" id="animalOutput"></div>
+    </div>
+
+    <script>
+        // Partie 1 : Comparaisons
+        document.getElementById('compareButton').addEventListener('click', () => {
+            const res1 = [2] === [2];
+            const res2 = ({} === {});
+
+            const outputHTML = `[2] === [2] : <span style="color:${res1 ? 'green' : 'red'}">${res1}</span>\n` +
+                               `{} === {} : <span style="color:${res2 ? 'green' : 'red'}">${res2}</span>`;
+
+            document.getElementById('compareOutput').innerHTML = outputHTML;
+        });
+
+        // Partie 2 : Valeurs des objets
+        document.getElementById('objectButton').addEventListener('click', () => {
+            const object1 = { number: 5 };
+            const object2 = object1;
+            const object3 = object2;
+            const object4 = { number: 5 };
+            object1.number = 4;
+
+            document.getElementById('objectOutput').innerText =
+                `object2.number : ${object2.number}\n` +
+                `object3.number : ${object3.number}\n` +
+                `object4.number : ${object4.number}`;
+        });
+
+        // Partie 3 : Classe Animal et Mammal
+        class Animal {
+            constructor(name, type, color) {
+                this.name = name;
+                this.type = type;
+                this.color = color;
+            }
+        }
+
+        class Mammal extends Animal {
+            sound(animalSound) {
+                return `${animalSound} I'm a ${this.type}, named ${this.name} and I'm ${this.color}`;
+            }
+        }
+
+        document.getElementById('createAnimal').addEventListener('click', () => {
+            const name = document.getElementById('animalName').value;
+            const type = document.getElementById('animalType').value;
+            const color = document.getElementById('animalColor').value;
+            if (name && type && color) {
+                const farmerCow = new Mammal(name, type, color);
+                const soundText = farmerCow.sound('Moooo');
+                document.getElementById('animalOutput').innerText = soundText;
+            } else {
+                document.getElementById('animalOutput').innerText = "Veuillez remplir tous les champs.";
+            }
+        });
+    </script>
+</body>
+</html>

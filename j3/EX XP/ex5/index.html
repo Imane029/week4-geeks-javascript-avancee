@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 5: Dog Class Interactive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .output {
+      background-color: #ecf0f1;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      color: #34495e;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    input {
+      padding: 5px 10px;
+      margin: 5px 0;
+      width: 200px;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Exercise 5: Dog Class Interactive</h1>
+
+  <label>Nom du chien: <input type="text" id="dogName"></label><br>
+  <label>Taille: <input type="text" id="dogSize"></label><br>
+  <button id="createLabrador">Créer le Labrador</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    class Dog {
+      constructor(name) {
+        this.name = name;
+      }
+    }
+
+    class Labrador extends Dog {
+      constructor(name, size) {
+        super(name);
+        this.size = size;
+      }
+    }
+
+    document.getElementById('createLabrador').addEventListener('click', () => {
+      const name = document.getElementById('dogName').value;
+      const size = document.getElementById('dogSize').value;
+      if(name && size) {
+        const lab = new Labrador(name, size);
+        document.getElementById('output').innerText = 
+          `Nom : ${lab.name}\nTaille : ${lab.size}\nType de l'objet : ${typeof lab}`;
+      } else {
+        document.getElementById('output').innerText = "Veuillez saisir le nom et la taille.";
+      }
+    });
+  </script>
+
+</body>
+</html>

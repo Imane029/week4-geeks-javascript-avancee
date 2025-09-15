@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercice 1 - Location</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+button { margin-top: 10px; padding: 8px 15px; cursor: pointer; border: none; border-radius:5px; background: #2980b9; color: white; }
+button:hover { background: #3498db; }
+#result { margin-top: 10px; padding: 10px; background: #ecf0f1; border-radius:5px; }
+</style>
+</head>
+<body>
+
+<h2>Exercice 1 : Location</h2>
+
+<p>Nom :</p>
+<input type="text" id="name" placeholder="John Doe" value="John Doe">
+<p>Pays :</p>
+<input type="text" id="country" placeholder="Canada" value="Canada">
+<p>Ville :</p>
+<input type="text" id="city" placeholder="Vancouver" value="Vancouver">
+<p>Coordonnées :</p>
+<input type="text" id="lat" placeholder="Latitude" value="49.2827">
+<input type="text" id="lng" placeholder="Longitude" value="-123.1207">
+
+<button onclick="showLocation()">Afficher résultat</button>
+
+<div id="result"></div>
+
+<script>
+function showLocation() {
+    const name = document.getElementById('name').value;
+    const country = document.getElementById('country').value;
+    const city = document.getElementById('city').value;
+    const lat = document.getElementById('lat').value;
+    const lng = document.getElementById('lng').value;
+
+    const message = `I am ${name} from ${city}, ${country}. Latitude(${lat}), Longitude(${lng})`;
+    document.getElementById('result').textContent = message;
+}
+</script>
+
+</body>
+</html>
