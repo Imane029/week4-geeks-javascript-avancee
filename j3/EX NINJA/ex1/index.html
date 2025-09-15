@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercice Classe JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+
+    h1 {
+      color: #3333cc;
+    }
+
+    pre {
+      background-color: #e0e0e0;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .note {
+      background-color: #fff3cd;
+      border-left: 5px solid #ffecb5;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Exercice Classe JavaScript : Bird & Flamingo</h1>
+
+  <pre>
+// Classe parent
+class Bird {
+  constructor() {
+    console.log("I'm a bird. 🦢");
+  }
+}
+
+// Classe enfant
+class Flamingo extends Bird {
+  constructor() {
+    super(); // Appel obligatoire du constructeur parent
+    console.log("I'm pink. 🌸");
+  }
+}
+
+const pet = new Flamingo();
+  </pre>
+
+  <div class="note">
+    <strong>Commentaire :</strong> 
+    // Dans le code original, le console.log était avant super().<br>
+    // Comme Flamingo hérite de Bird, on doit appeler super() d'abord.<br>
+    // Sinon, ça provoque une erreur et le code ne marche pas.<br>
+    // En mettant super() en premier, le code s'exécute correctement.
+  </div>
+
+  <script>
+    
+    class Bird {
+      constructor() {
+        console.log("I'm a bird. 🦢");
+      }
+    }
+
+    class Flamingo extends Bird {
+      constructor() {
+        super(); 
+        console.log("I'm pink. 🌸");
+      }
+    }
+
+    const pet = new Flamingo();
+  </script>
+
+</body>
+</html>
