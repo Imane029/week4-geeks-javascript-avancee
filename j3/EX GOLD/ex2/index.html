@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2: keysAndValues</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #334e68;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .output {
+            background-color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre; 
+        }
+        input, button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercice 2 : Clés et Valeurs</h1>
+        <p>Entrez des paires clé:valeur (ex: a:1,b:2,c:3)</p>
+        <input type="text" id="objectInput" placeholder="a:1,b:2,c:3">
+        <button onclick="displayKeysAndValues()">Afficher les tableaux</button>
+        <div class="output" id="output2"></div>
+    </div>
+
+    <script>
+        function keysAndValues(obj) {
+            const keys = Object.keys(obj).sort();
+            const values = keys.map(key => obj[key]);
+            return [keys, values];
+        }
+
+        function displayKeysAndValues() {
+            const inputString = document.getElementById('objectInput').value;
+            const obj = {};
+            inputString.split(',').forEach(pair => {
+                const [key, value] = pair.split(':');
+                if (key && value) {
+                    obj[key.trim()] = isNaN(value.trim()) ? value.trim() : Number(value.trim());
+                }
+            });
+            
+            const [keys, values] = keysAndValues(obj);
+            document.getElementById('output2').innerText = `Clés triées : [${keys.join(', ')}]\nValeurs correspondantes : [${values.join(', ')}]`;
+        }
+    </script>
+</body>
+</html>

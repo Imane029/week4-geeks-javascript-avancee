@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 3: Counter Class</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #334e68;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .instructions {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercice 3 : Classe Compteur</h1>
+        <p>L'analyse de ce code se fait dans la console du navigateur (Ctrl+Shift+I ou F12).</p>
+        <div class="instructions">
+            <strong>Instructions :</strong> Ouvrez les outils de développement (Console) pour voir le résultat de l'exécution du code.
+        </div>
+    </div>
+
+    <script>
+        class Counter {
+            constructor() {
+                this.count = 0;
+            }
+
+            increment() {
+                this.count++;
+            }
+        }
+
+        const counterOne = new Counter();
+        counterOne.increment();
+        counterOne.increment();
+
+        const counterTwo = counterOne;
+        counterTwo.increment();
+
+        console.log("Le résultat de counterOne.count est :", counterOne.count);
+    </script>
+</body>
+</html>
