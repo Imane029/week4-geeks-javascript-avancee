@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 3 - JSON Mario</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0f4f8;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            max-width: 800px;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button {
+            display: block;
+            margin: 0 auto 20px auto;
+            padding: 10px 20px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e84118;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JSON Mario</h1>
+    <button onclick="showJSON()">Afficher JSON</button>
+
+    <pre id="jsonOutput"></pre>
+
+    <script>
+        const marioGame = {
+            detail: "An amazing game!",
+            characters: {
+                mario: {
+                    description: "Small and jumpy. Likes princesses.",
+                    height: 10,
+                    weight: 3,
+                    speed: 12,
+                },
+                bowser: {
+                    description: "Big and green, Hates princesses.",
+                    height: 16,
+                    weight: 6,
+                    speed: 4,
+                },
+                princessPeach: {
+                    description: "Beautiful princess.",
+                    height: 12,
+                    weight: 2,
+                    speed: 2,
+                }
+            }
+        };
+
+        function showJSON() {
+            // Convert JS object to JSON string (pretty print)
+            const prettyJSON = JSON.stringify(marioGame, null, 2);
+            // Display inside the <pre> element
+            document.getElementById('jsonOutput').textContent = prettyJSON;
+        }
+    </script>
+
+</body>
+</html>
