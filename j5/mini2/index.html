@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe vs Ordinateur</title>
+  <style>
+    body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: "Poppins", sans-serif;
+}
+
+.game {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  text-align: center;
+  width: 360px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #ff4b2b;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 5px rgba(255,75,43,0.3);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #fdfdfd;
+  border-radius: 15px;
+  font-size: 2.8rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.cell:hover {
+  background: #ffe6e6;
+  transform: scale(1.05);
+}
+
+.cell.taken {
+  cursor: not-allowed;
+  background: #f1f1f1;
+  color: #555;
+  transform: none;
+}
+
+#status {
+  margin-top: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  min-height: 30px;
+}
+
+.win {
+  color: #28a745;
+  text-shadow: 0 0 8px #28a745;
+}
+
+.tie {
+  color: #ff9800;
+  text-shadow: 0 0 8px #ff9800;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+  </style>
+</head>
+<body>
+  <div class="game">
+    <h1>Tic Tac Toe</h1>
+    <div class="board" id="board"></div>
+    <div id="status">À toi de jouer !</div>
+    <button onclick="restartGame()">Rejouer</button>
+  </div>
+
+  <script>
+    const boardEl = document.getElementById("board");
+    const statusEl = document.getElementById("status");
+    let board, currentPlayer, gameActive;
+
+    const winCombos = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    function startGame() {
+      board = Array(9).fill(null);
+      currentPlayer = "X";
+      gameActive = true;
+      boardEl.innerHTML = "";
+      statusEl.textContent = "À toi de jouer !";
+      statusEl.className = "";
+
+      for (let i=0;i<9;i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.dataset.index = i;
+        cell.addEventListener("click", handleCellClick);
+        boardEl.appendChild(cell);
+      }
+    }
+
+    function handleCellClick(e) {
+      const index = e.target.dataset.index;
+      if (!gameActive || board[index]) return;
+
+      board[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+      e.target.classList.add("taken");
+
+      if (checkWin(currentPlayer)) {
+        statusEl.textContent = `🎉 Joueur ${currentPlayer} gagne !`;
+        statusEl.className = "win";
+        gameActive = false;
+        return;
+      }
+
+      if (board.every(cell => cell)) {
+        statusEl.textContent = "🤝 Match nul !";
+        statusEl.className = "tie";
+        gameActive = false;
+        return;
+      }
+
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      if (currentPlayer === "O") {
+        statusEl.textContent = "💻 L’ordinateur joue...";
+        setTimeout(computerMove, 1000);
+      }
+    }
+
+    function computerMove() {
+      const available = board.map((v,i)=> v?null:i).filter(v=>v!==null);
+      const choice = available[Math.floor(Math.random()*available.length)];
+      const cell = boardEl.children[choice];
+      board[choice] = currentPlayer;
+      cell.textContent = currentPlayer;
+      cell.classList.add("taken");
+
+      if (checkWin(currentPlayer)) {
+        statusEl.textContent = `💻 L’ordinateur (${currentPlayer}) gagne !`;
+        statusEl.className = "win";
+        gameActive = false;
+        return;
+      }
+
+      if (board.every(cell => cell)) {
+        statusEl.textContent = "🤝 Match nul !";
+        statusEl.className = "tie";
+        gameActive = false;
+        return;
+      }
+
+      currentPlayer = "X";
+      statusEl.textContent = "👉 À toi de jouer !";
+    }
+
+    function checkWin(player) {
+      return winCombos.some(combo => 
+        combo.every(i => board[i] === player)
+      );
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    startGame();
+  </script>
+</body>
+</html>

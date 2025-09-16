@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Robo-Friends</title>
+  <style>
+    body {
+      background: #50569a url('https://raw.githubusercontent.com/yolocode1/robolayout/main/circuit-board.svg') repeat;
+      background-size: 500px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background: #39a939;
+      width: 100%;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: white;
+      font-size: 2.5em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin: 0;
+    }
+    .robo-logo {
+      color: #4CAF50;
+    }
+    .search-container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+    #search-box {
+      width: 250px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
+      font-size: 16px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      padding: 30px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #727de9;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      color: white;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+    .card img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 10px;
+      background-color: #000106;
+      border: 5px solid rgba(0, 0, 0, 0.635); /* La bordure du cercle est maintenant noire */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .card img:hover {
+      transform: rotate(15deg);
+    }
+    .card h3 {
+      margin: 10px 0 5px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .card p {
+      margin: 3px 0;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><span class="robo-logo">ROBO</span>FRIENDS</h1>
+    <div class="search-container">
+      <input type="text" id="search-box" placeholder="Search Robots">
+    </div>
+  </div>
+  <div class="cards-container" id="cards-container"></div>
+  <script>
+    const robots = [
+      {id: 1, name: 'Leanne Graham', username: 'Bret', email: 'Sincere@april.biz', image: 'https://robohash.org/1?200x200'},
+      {id: 2, name: 'Ervin Howell', username: 'Antonette', email: 'Shanna@melissa.tv', image: 'https://robohash.org/2?200x200'},
+      {id: 3, name: 'Clementine Bauch', username: 'Samantha', email: 'Nathan@yesenia.net', image: 'https://robohash.org/3?200x200'},
+      {id: 4, name: 'Patricia Lebsack', username: 'Karianne', email: 'Julianne.OConner@kory.org', image: 'https://robohash.org/4?200x200'},
+      {id: 5, name: 'Chelsey Dietrich', username: 'Kamren', email: 'Lucio_Hettinger@annie.ca', image: 'https://robohash.org/5?200x200'},
+      {id: 6, name: 'Mrs. Dennis Schulist', username: 'Leopoldo_Corkery', email: 'Karley_Dach@jasper.info', image: 'https://robohash.org/6?200x200'},
+      {id: 7, name: 'Kurtis Weissnat', username: 'Elwyn.Skiles', email: 'Telly.Hoeger@billy.biz', image: 'https://robohash.org/7?200x200'},
+      {id: 8, name: 'Nicholas Runolfsdottir V', username: 'Maxime_Nienow', email: 'Sherwood@rosamond.me', image: 'https://robohash.org/8?200x200'},
+      {id: 9, name: 'Glenna Reichert', username: 'Delphine', email: 'Chaim_McDermott@dana.io', image:'https://robohash.org/9?200x200'},
+      {id: 10, name: 'Clementina DuBuque', username: 'Moriah.Stanton', email: 'Rey.Padberg@karina.biz', image:'https://robohash.org/10?200x200'}
+    ];
+    const container = document.getElementById('cards-container');
+    const searchBox = document.getElementById('search-box');
+    function displayRobots(list) {
+      container.innerHTML = '';
+      list.forEach(({name, username, email, image}) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${image}" alt="${name}">
+          <h3>${name}</h3>
+          <p>${email}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+    displayRobots(robots);
+    searchBox.addEventListener('input', (e) => {
+      const filtered = robots.filter(robot => 
+        robot.name.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      displayRobots(filtered);
+    });
+  </script>
+</body>
+</html>
