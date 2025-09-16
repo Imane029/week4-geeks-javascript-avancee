@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form to JSON</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+    }
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    pre {
+      background: #f7f7f7;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 5px;
+      text-align: left;
+      max-height: 200px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Form → JSON</h2>
+    <form id="userForm">
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="text" id="lastname" placeholder="Enter your last name" required>
+      <button type="submit">Send</button>
+    </form>
+    <pre id="output">{ }</pre>
+  </div>
+
+  <script>
+    const form = document.getElementById("userForm");
+    const output = document.getElementById("output");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const lastname = document.getElementById("lastname").value;
+
+      const data = {
+        name: name,
+        lastname: lastname
+      };
+
+      output.textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>
