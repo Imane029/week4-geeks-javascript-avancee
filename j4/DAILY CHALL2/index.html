@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Truthy Checker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 400px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      width: 50%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    p {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .truthy {
+      color: green;
+    }
+    .falsy {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>All Truthy Checker</h2>
+    <p>Enter values separated by commas:</p>
+    <input type="text" id="values" placeholder="e.g. true, 1, 'hello', false">
+    <button id="checkBtn">Check</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function allTruthy(...args) {
+      return args.every(Boolean);
+    }
+
+    const input = document.getElementById("values");
+    const button = document.getElementById("checkBtn");
+    const result = document.getElementById("result");
+
+    button.addEventListener("click", () => {
+      let values = input.value.split(",").map(v => {
+        v = v.trim();
+        if(v === "true") return true;
+        if(v === "false") return false;
+        if(!isNaN(v) && v !== "") return Number(v);
+        return v;
+      });
+      const res = allTruthy(...values);
+      result.textContent = res ? "All values are truthy ✅" : "Some values are falsy ❌";
+      result.className = res ? "truthy" : "falsy";
+    });
+  </script>
+</body>
+</html>
