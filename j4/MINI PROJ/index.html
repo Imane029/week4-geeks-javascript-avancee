@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Quote Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 400px;
+    }
+    h1 {
+      color: #333;
+    }
+    #quote-box {
+      background: #f7f7f7;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+      font-style: italic;
+      min-height: 60px;
+    }
+    button {
+      background: #4CAF50;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    form {
+      margin-top: 15px;
+    }
+    input {
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .author {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎲 Random Quote Generator</h1>
+    <div id="quote-box">Click "Generate Quote" to start!</div>
+    <div class="author" id="author"></div>
+    <button id="generate">Generate Quote</button>
+    <button id="like">👍 Like</button>
+    <button id="char-space">Characters (with spaces)</button>
+    <button id="char-nospace">Characters (no spaces)</button>
+    <button id="word-count">Word Count</button>
+    <form id="addQuoteForm">
+      <input type="text" id="newQuote" placeholder="Enter new quote" required>
+      <input type="text" id="newAuthor" placeholder="Enter author" required>
+      <button type="submit">Add Quote</button>
+    </form>
+  </div>
+
+  <script>
+    let quotes = [
+      {id: 0, author: "Albert Einstein", quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.", likes: 0},
+      {id: 1, author: "Oscar Wilde", quote: "Be yourself; everyone else is already taken.", likes: 0},
+      {id: 2, author: "Steve Jobs", quote: "Your time is limited, so don’t waste it living someone else’s life.", likes: 0},
+      {id: 3, author: "Confucius", quote: "It does not matter how slowly you go as long as you do not stop.", likes: 0}
+    ];
+
+    let lastIndex = -1;
+    let currentQuote = null;
+
+    const quoteBox = document.getElementById("quote-box");
+    const authorBox = document.getElementById("author");
+
+    document.getElementById("generate").addEventListener("click", () => {
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastIndex);
+      lastIndex = index;
+      currentQuote = quotes[index];
+      quoteBox.textContent = `"${currentQuote.quote}"`;
+      authorBox.textContent = `— ${currentQuote.author} (❤️ ${currentQuote.likes})`;
+    });
+
+    document.getElementById("like").addEventListener("click", () => {
+      if (currentQuote) {
+        currentQuote.likes++;
+        authorBox.textContent = `— ${currentQuote.author} (❤️ ${currentQuote.likes})`;
+      }
+    });
+
+    document.getElementById("char-space").addEventListener("click", () => {
+      if (currentQuote) {
+        alert(`Characters (with spaces): ${currentQuote.quote.length}`);
+      }
+    });
+
+    document.getElementById("char-nospace").addEventListener("click", () => {
+      if (currentQuote) {
+        const count = currentQuote.quote.replace(/\s+/g, '').length;
+        alert(`Characters (no spaces): ${count}`);
+      }
+    });
+
+    document.getElementById("word-count").addEventListener("click", () => {
+      if (currentQuote) {
+        const words = currentQuote.quote.trim().split(/\s+/).length;
+        alert(`Word count: ${words}`);
+      }
+    });
+
+    document.getElementById("addQuoteForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const newQuote = document.getElementById("newQuote").value;
+      const newAuthor = document.getElementById("newAuthor").value;
+      quotes.push({
+        id: quotes.length,
+        author: newAuthor,
+        quote: newQuote,
+        likes: 0
+      });
+      alert("✅ Nouvelle citation ajoutée !");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
