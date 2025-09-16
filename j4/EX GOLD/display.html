@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Données affichées</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4CAF50, #81C784);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    section {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2>Données reçues</h2>
+    <p id="output"></p>
+  </section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const lastname = params.get("lastname");
+    document.getElementById("output").textContent = 
+      `Bonjour ${name} ${lastname}, vos données ont bien été envoyées !`;
+  </script>
+</body>
+</html>

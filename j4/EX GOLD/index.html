@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input[type="text"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      transition: 0.3s;
+    }
+    input[type="text"]:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    input[type="submit"]:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Formulaire</h2>
+    <form action="display.html" method="GET">
+      <input type="text" name="name" placeholder="Enter your name" required>
+      <input type="text" name="lastname" placeholder="Enter your lastname" required>
+      <input type="submit" value="Send">
+    </form>
+  </div>
+</body>
+</html>
